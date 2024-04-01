@@ -1,0 +1,1 @@
+select c.ID, ifnull(s.CHILD_COUNT, 0) as "CHILD_COUNT" from ECOLI_DATA c left outer join (select PARENT_ID, count(*) as "CHILD_COUNT" from ECOLI_DATA where PARENT_ID is not null group by PARENT_ID) s on s.PARENT_ID = c.ID order by c.ID; 

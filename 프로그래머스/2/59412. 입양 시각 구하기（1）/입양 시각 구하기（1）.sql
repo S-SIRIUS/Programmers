@@ -1,0 +1,1 @@
+select date_format(DATETIME, "%H") + 0 as "HOUR", count(*) as "COUNT" from ANIMAL_OUTS group by  date_format(DATETIME, "%H") having HOUR >= 9 and HOUR <= 19 order by date_format(DATETIME, "%H");

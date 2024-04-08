@@ -1,0 +1,1 @@
+select TRUNCATE(PRICE/10000, 0) * 10000 PRICEGROUP,count(*) PRODUCTS from PRODUCT group by PRICEGROUP having PRICEGROUP is not null order by PRICEGROUP;

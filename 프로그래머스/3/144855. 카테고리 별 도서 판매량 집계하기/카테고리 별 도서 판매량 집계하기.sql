@@ -1,0 +1,1 @@
+select b.CATEGORY CATEGORY, sum(s.SALES) TOTAL_SALES from BOOK b inner join BOOK_SALES s on b.BOOK_ID = s.BOOK_ID where date_format(s.SALES_DATE, "%Y") = 2022 and date_format(s.SALES_DATE, "%m")=1 group by b.CATEGORY order by b.CATEGORY;

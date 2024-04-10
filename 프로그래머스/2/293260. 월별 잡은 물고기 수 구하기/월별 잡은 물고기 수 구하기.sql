@@ -1,0 +1,1 @@
+select count(*) FISH_COUNT, date_format(TIME, "%m")+0 MONTH from FISH_INFO group by date_format(TIME, "%m")+0 order by date_format(TIME, "%m")+0;

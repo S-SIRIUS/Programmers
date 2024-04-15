@@ -1,0 +1,1 @@
+select count(f1.FISH_TYPE) FISH_COUNT, max(f1.LENGTH) MAX_LENGTH, f1.FISH_TYPE from FISH_INFO f1 where f1.ID in (select f2.ID from FISH_INFO f2 where ifnull(LENGTH, 10) and f2.FISH_TYPE = f1.FISH_TYPE) group by f1.FISH_TYPE having avg(LENGTH)>= 33 order by f1.FISH_TYPE;

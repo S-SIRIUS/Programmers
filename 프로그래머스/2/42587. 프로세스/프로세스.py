@@ -2,11 +2,8 @@ from collections import deque
 def solution(priorities, location):
     answer = 0
     
-    queue1 = deque()
+    queue1 = deque(priorities)
     queue2 = deque()
-    
-    for p in priorities:
-        queue1.append(p)
     
     for i in range(0, len(priorities)):
         queue2.append(i)

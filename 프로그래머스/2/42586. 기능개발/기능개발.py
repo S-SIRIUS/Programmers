@@ -15,7 +15,6 @@ def solution(progresses, speeds):
     answer=[]
     
     queue = deque()
-    new_d_time=[]
     for i in d_time:
         queue.appendleft(i)
     print(queue)

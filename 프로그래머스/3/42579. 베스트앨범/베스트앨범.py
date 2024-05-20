@@ -12,9 +12,6 @@ def solution(genres, plays):
             play_dic[i]=j
             index_dic[i]={index:j}
         index+=1
-        
-    
-    new_genres=[]
     
     target_keys = list(play_dic.keys())
     sorted_dict = sorted(play_dic.items(), key=lambda item: (-item[1]))
@@ -23,8 +20,7 @@ def solution(genres, plays):
     new_index_dic={}
     for i in sorted_dict.keys():
         target = index_dic[i]
-        target_keys = list(target.keys())
-        sorted_dict = sorted(target.items(), key=lambda item: (-item[1], target_keys.index(item[0])))
+        sorted_dict = sorted(target.items(), key=lambda item: (-item[1], item[0]))
         sorted_dict = dict(sorted_dict)
         new_index_dic[i]=sorted_dict
     

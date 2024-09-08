@@ -1,7 +1,9 @@
+# 테트로미토(골드4)
+directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
 def dfs(x, y, depth, total):
     global max_sum
     if depth == 4:  # 4개의 칸을 채운 경우
-        max_sum = max(max_sum, total)
+        value.append(total)
         return
 
     for dx, dy in directions:
@@ -10,37 +12,57 @@ def dfs(x, y, depth, total):
             visited[nx][ny] = True
             dfs(nx, ny, depth + 1, total + field[nx][ny])
             visited[nx][ny] = False
+def etc(x, y):
+    if(x+2>=0 and x+2<n):
+        summ=0
+        summ+=field[x][y] + field[x+1][y] + field[x+2][y]
+        if(y+1>=0 and y+1<m):
+            summ1=summ+field[x+1][y+1]
+            value.append(summ1)
+        if(y-1>=0 and y-1<m):
+            summ2=summ+field[x+1][y-1]
+            value.append(summ2)
+    if(x-2>=0 and x-2<n):
+        summ=0
+        summ+=field[x][y] + field[x-1][y] + field[x-2][y]
+        if(y+1>=0 and y+1<m):
+            summ1=summ+field[x-1][y+1]
+            value.append(summ1)
+        if(y-1>=0 and y-1<m):
+            summ2=summ+field[x-1][y-1]
+            value.append(summ2)
+    if(y+2>=0 and y+2<m):
+        summ=0
+        summ+=field[x][y] + field[x][y+1] + field[x][y+2]
+        if(x+1>=0 and x+1<n):
+            summ1=summ+field[x+1][y+1]
+            value.append(summ1)
+        if(x-1>=0 and x-1<n):
+            summ2=summ+field[x-1][y+1]
+            value.append(summ2)
+    if(y-2>=0 and y-2<m):
+        summ=0
+        summ+=field[x][y] + field[x][y-1] + field[x][y-2]
+        if(x+1>=0 and x+1<n):
+            summ1=summ+field[x+1][y-1]
+            value.append(summ1)
+        if(x-1>=0 and x-1<n):
+            summ2=summ+field[x-1][y-1]
+            value.append(summ2)
+        
 
-def check_special_shape(x, y):
-    global max_sum
-    for i in range(4):
-        total = field[x][y]
-        for j in range(3):
-            k = (i + j) % 4
-            nx, ny = x + directions[k][0], y + directions[k][1]
-            if 0 <= nx < n and 0 <= ny < m:
-                total += field[nx][ny]
-            else:
-                break
-        max_sum = max(max_sum, total)
 
 n, m = map(int, input().split())
-field = [list(map(int, input().split())) for _ in range(n)]
-
-# 방향 설정 (우, 하, 좌, 상)
-directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
-
-max_sum = 0
-visited = [[False] * m for _ in range(n)]
-
+field=[]
+visited=[[False]*m for _ in range(n)]
 for i in range(n):
-    for j in range(m):
-        # DFS를 이용하여 ㅗ 모양 제외한 모든 모양 탐색
+    field.append(list(map(int, input().split())))
+
+value=[]
+for i in range(0, n):
+    for j in range(0, m):
         visited[i][j] = True
         dfs(i, j, 1, field[i][j])
         visited[i][j] = False
-
-        # ㅗ 모양 탐색
-        check_special_shape(i, j)
-
-print(max_sum)
+        etc(i,j)
+print(max(value))

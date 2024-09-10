@@ -1,0 +1,1 @@
+select i.NAME NAME, i.DATETIME from ANIMAL_INS i left outer join ANIMAL_OUTS o on i.ANIMAL_ID = o.ANIMAL_ID where SEX_UPON_OUTCOME is null order by DATETIME limit 3;

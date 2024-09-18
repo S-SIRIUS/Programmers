@@ -1,0 +1,1 @@
+select o.ANIMAL_ID, o.NAME from ANIMAL_OUTS o left outer join ANIMAL_INS i on i.ANIMAL_ID = o.ANIMAL_ID where i.SEX_UPON_INTAKE is null order by o.ANiMAL_ID;

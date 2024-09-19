@@ -1,0 +1,1 @@
+select i.ITEM_ID, i.ITEM_NAME from ITEM_INFO i, ITEM_TREE t where i.ITEM_ID = t.ITEM_ID and t.PARENT_ITEM_ID is null order by i.ITEM_ID;

@@ -1,0 +1,2 @@
+select e1.ID, case when COLONY_NAME<=0.25 then "CRITICAL" when e2.COLONY_NAME<=0.50 then "HIGH" when e2.COLONY_NAME<=0.75 then "MEDIUM" else "LOW" end COLONY_NAME from ECOLI_DATA e1, (select ID, percent_rank() over (order by SIZE_OF_COLONY desc) COLONY_NAME from ECOLI_DATA) e2 where e1.ID = e2.ID order by e1.ID;
+ 

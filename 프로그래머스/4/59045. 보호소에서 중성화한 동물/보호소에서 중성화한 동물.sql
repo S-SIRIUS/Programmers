@@ -1,0 +1,1 @@
+select i2.ANIMAL_ID, i2.ANIMAL_TYPE, i2.NAME from (select * from ANIMAL_INS i where i.SEX_UPON_INTAKE like "%Intact%") i2, (select * from ANIMAL_OUTS o where o.SEX_UPON_OUTCOME like "%Spayed%" or o.SEX_UPON_OUTCOME like "%Neutered%") o2 where i2.ANIMAL_ID = o2.ANIMAL_ID order by i2.ANIMAL_ID;

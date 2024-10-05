@@ -1,0 +1,1 @@
+select orders.FLAVOR from (select * from FIRST_HALF union select * from JULY) orders group by orders.FLAVOR order by sum(orders.TOTAL_ORDER) desc limit 3;

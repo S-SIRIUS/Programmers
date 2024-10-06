@@ -1,0 +1,1 @@
+select s.YEAR, s.MONTH, i.GENDER, count(distinct(i.USER_ID)) USERS from (select USER_ID, GENDER from USER_INFO) i, (select USER_ID, year(SALES_DATE) YEAR, month(SALES_DATE) MONTH from ONLINE_SALE) s where i.USER_ID = s.USER_ID group by s.YEAR, s.MONTH, i.GENDER having i.GENDER is not null order by YEAR, MONTH, GENDER;

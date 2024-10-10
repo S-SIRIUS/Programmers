@@ -1,0 +1,1 @@
+select e.EMP_NO, e.EMP_NAME, case when avg(g.SCORE) >= 96 then "S" when avg(g.SCORE)>=90 then "A" when avg(g.SCORE)>=80 then "B" else "C" end GRADE, case when avg(g.SCORE) >= 96 then e.SAL * 0.2 when avg(g.SCORE)>=90 then e.SAL*0.15 when avg(g.SCORE)>=80 then e.SAL*0.1 else 0 end BONUS from HR_EMPLOYEES e, HR_GRADE g where g.EMP_NO = e.EMP_NO group by e.EMP_NO order by e.EMP_NO;

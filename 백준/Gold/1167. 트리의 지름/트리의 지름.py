@@ -1,32 +1,32 @@
 # 트리의 지름(골드2)
 import sys
-sys.setrecursionlimit(10**6)
+sys.setrecursionlimit(10**7)
 input = sys.stdin.readline
-
-def dfs(node, value):
+def dfs(node, count):
+    global max_count, last_node
     visited[node]=True
-    max_node = node
-    max_value = value
     for i in graph[node]:
         if visited[i[0]]==False:
-            current_node, current_value = dfs(i[0], value+i[1])
-            if current_value > max_value:
-                max_value = current_value
-                max_node = current_node
-    return max_node, max_value
+           dfs(i[0], count+i[1])
+    if max_count < count:
+        max_count = count
+        last_node = node    
+    return
 
-n = int(input())
-graph=[[] for _ in range(n+1)]
-visited=[False]*(n+1)
-
-for i in range(n):
-    node, *list_info = map(int, input().split())
-    for j in range(0, len(list_info), 2):
-        if list_info[j]==-1:
+v = int(input().strip())
+graph=[[] for _ in range(v+1)]
+for i in range(1, v+1):
+    temp = list(map(int, input().strip().split()))
+    for j in range(1, len(temp), 2):
+        if temp[j]==-1:
             break
-        graph[node].append((list_info[j], list_info[j+1]))
-
-node1, value1 = dfs(1, 0)
-visited=[False]*(n+1)
-node2, value2 = dfs(node1, 0)
-print(value2)
+        else:
+            graph[temp[0]].append((temp[j], temp[j+1]))
+max_count=-1
+last_node=0
+visited = [False]*(v+1)
+dfs(1, 0)
+visited = [False]*(v+1)
+max_count=-1
+dfs(last_node, 0)
+print(max_count)

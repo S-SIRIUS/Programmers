@@ -11,7 +11,3 @@ def solution(phone_book):
             if jeobdoo in phone_book_hash and jeobdoo!=phone:
                 return False
     return True
-        
-    
-            
-    return True

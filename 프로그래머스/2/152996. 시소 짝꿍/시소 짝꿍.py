@@ -1,13 +1,19 @@
-from collections import Counter
+from itertools import combinations
+def gcd(a, b):
+    if b==0:
+        return a
+    else:
+        return gcd(b, a%b)
 
 def solution(weights):
     answer = 0
-    c = Counter(weights)
-    for w in range(100, 1001):
-        if c[w]>0:
-            a1 = c[w]*(c[w]-1)/2
-            a2 = c[w]*(c[w*2])
-            a3 = c[w]*(c[w*3/2])
-            a4 = c[w]*(c[w*4/3])
-            answer+=(a1+a2+a3+a4)
+    candidates = combinations(weights, 2)
+    for c in candidates:
+        print(c)
+        g = gcd(c[0], c[1])
+        a1 = c[0]//g
+        a2 = c[1]//g
+
+        if a1 in (1, 2, 3, 4) and a2 in (1,2,3,4):
+            answer+=1
     return answer

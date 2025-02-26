@@ -1,32 +1,27 @@
 # 플로이드(골드4)
 import sys
-inf = int(1e9)
 input = sys.stdin.readline
-
+inf = int(1e9)
 n = int(input())
 m = int(input())
-
-graph=[[inf]*(n+1) for _ in range(n+1)]
+matrix = [[inf]*(n+1) for _ in range(n+1)]
+for i in range(m):
+    a, b, v = map(int, input().split())
+    matrix[a][b] = min(matrix[a][b], v)
 
 for i in range(1, n+1):
     for j in range(1, n+1):
         if i==j:
-            graph[i][j]=0
-
-for i in range(m):
-    a, b, c = map(int, input().split())
-    graph[a][b] = min(graph[a][b], c)
-
+            matrix[i][j]=0
 
 for k in range(1, n+1):
     for i in range(1, n+1):
         for j in range(1, n+1):
-            graph[i][j] = min(graph[i][j], graph[i][k] + graph[k][j])
-
+            matrix[i][j] = min(matrix[i][j], matrix[i][k]+matrix[k][j])
 for i in range(1, n+1):
     for j in range(1, n+1):
-        if graph[i][j]==inf:
+        if matrix[i][j]==inf:
             print(0, end=" ")
         else:
-            print(graph[i][j], end=" ")
+            print(matrix[i][j], end=" ")
     print()

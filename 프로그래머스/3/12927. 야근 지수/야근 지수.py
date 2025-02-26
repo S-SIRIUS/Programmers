@@ -1,18 +1,20 @@
 import heapq
 def solution(n, works):
     answer = 0
-    new_works=[]
-    for i in works:
-        new_works.append(-i)
-    heapq.heapify(new_works)
+    queue=[]
+    for w in works:
+        queue.append(-w)
+    heapq.heapify(queue)
     
-    for i in range(0, n):
-        temp = heapq.heappop(new_works)
-        heapq.heappush(new_works, temp+1)
-        
-    for i in new_works:
-        if i >0:
-            answer = 0
+    while n>0:
+        work = heapq.heappop(queue)
+        if work==0:
             break
-        answer += i**2
+        work+=1
+        heapq.heappush(queue, work)
+        n-=1
+    
+    answer=0
+    for q in queue:
+        answer += q**2
     return answer

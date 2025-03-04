@@ -36,14 +36,14 @@ for i in range(n):
             edges.append((temp_value, i+1, j+1))
 edges.sort()
 need=0
+use_edge=0
 for e in edges:
     value, n1, n2 = e
     if find(n1)!=find(n2):
         union(n1, n2)
         need+=value
-iv=parent[1]
-for i in range(2, n+1):
-    if iv!= find(i):
-        print(-1)
-        sys.exit(0)
-print(total-need)
+        use_edge+=1
+if use_edge==n-1:
+    print(total-need)
+else:
+    print(-1)
